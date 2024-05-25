@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Management</title>
 </head>
+
+/* Try at school can't connect with vpn at home */
+
 <body>
     <div class="User view">
         <h1>User Management</h1>
