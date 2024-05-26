@@ -18,4 +18,8 @@ class Borrow extends Model
         return $this->belongsTo(User::class);
     }
 
+    protected $dispatchesEvents = [
+        'created' => BorrowCreated::class,
+    ];
+
 }
