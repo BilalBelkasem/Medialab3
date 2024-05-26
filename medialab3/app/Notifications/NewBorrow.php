@@ -6,6 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use App\Models\Borrow;
+use Illuminate\Support\Str;
 
 class NewBorrow extends Notification
 {
@@ -14,10 +16,11 @@ class NewBorrow extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(public Borrow $borrow)
     {
         //
     }
+    
 
     /**
      * Get the notification's delivery channels.
@@ -35,9 +38,14 @@ class NewBorrow extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->line('The introduction to the notification.')
+            ->action('Notification Action', url('/'))
+            ->subject("New item borrowed  {$this->borrow->product->name}")
+            ->greeting("New item borrowed {$this->borrow->product->name}")
+            ->line(Str::limit($this->chirp->message, 50))
+            ->action('Go to Home', url('/'))
+            ->line('Thank you for using our site!');
+    
     }
 
     /**
