@@ -2,8 +2,10 @@
     <x-authentication-card>
         <x-slot name="logo">
             <a href="/">
-            <img src="assets/images/eraslogo.png" alt="">
+                <img src="{{ asset('assets/images/EhB-logo-transparant(1).png') }}" alt="Logo" class = "custom-logo">
             </a>
+
+            <link href="{{ asset('css/user/Custom.css') }}" rel="stylesheet">
         </x-slot>
 
         <x-validation-errors class="mb-4" />
